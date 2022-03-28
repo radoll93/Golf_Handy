@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS golfScore_db;
-CREATE DATABASE golfScore_db;

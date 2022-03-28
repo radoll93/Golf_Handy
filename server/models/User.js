@@ -1,54 +1,71 @@
-const { Model, DataTypes } = require('sequelize');
+const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
 
-class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
-}
+const scoreSchema = require('./Score')
+const reviewSchema = require('./review')
 
-User.init(
+const userSchema = new Schema(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     username: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [6],
-      },
+      type: String,
+      required: true,
     },
+    userScores: [scoreSchema],
+    userReviews: [reviewSchema]
   },
   {
-    hooks: {
-      async beforeCreate(newUserData) {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
+    toJSON: {
+      virtuals: true,
     },
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'user',
   }
 );
+
+
+// hash user password
+userSchema.pre('save', async function (next) {
+
+  this.username =  this.username.toLowerCase();
+
+  console.log(this)
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+userSchema.pre('findOneAndUpdate', async function (next) {
+  const update = this.getUpdate('password')
+
+  if (update.password) {
+    const saltRounds = 10;
+    update.password = await bcrypt.hash(update.password, saltRounds);
+  }
+
+  next();
+});
+
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+// when we query a user, we'll also get another field called `animeCount` with the number of saved animes we have
+userSchema.virtual('reviewCount').get(function () {
+  return this.userReviews.length;
+});
+
+const User = model('User', userSchema)
 
 module.exports = User;

@@ -1,48 +1,16 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Schema, model } = require('mongoose');
 
-
-class Score extends Model {}
-  
-  Score.init(
+const scoreSchema = new Schema(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
       date: {
-        type: DataTypes.DATE,
-        allowNull: false,
+        type: Date,
+        required: true,
       },
       total: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        type: Number,
+        required: true,
       },
-    userId: {
-    type: DataTypes.INTEGER,
-    references: {
-        model: 'user',
-        key: 'id',
-        },
     },
-    courseId: {
-        type: DataTypes.INTEGER,
-        references: {
-        model: 'course',
-        key: 'id',
-        },
-    },
-  },
-    {
-      sequelize,
-      timestamps: false,
-      freezeTableName: true,
-      underscored: true,
-      modelName: 'score',
-    }
   );
   
-  module.exports = Score;
+  module.exports = scoreSchema;
