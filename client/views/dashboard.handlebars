@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{username}}!</h2>
+  </div>
+</div>
+
+<h4 style="border-bottom: 2px #076652 solid; font-size:x=x-large">Past Course's and Score's:</h4>
+
+<div class="row" style="width: 100%;">
+  <div class="column">
+    <div>{{> linechart}}</div>
+  </div>
+  <div class="column" style="margin-top: 80px;">
+    <a href="/dashboard/add"><button class="add-score-btn">Click to add your score!</button></a>
+      {{#if user.courses.length}}
+        {{#each course as |course|}}
+          <div style="margin-left: 10px; margin-top: 10px; border: 1px #076652 solid">
+            <h4>{{course.name}}</h4>
+            <p>Par: {{course.par}}</p>
+            {{#each course.scores as |score| }}
+            <p>Date: {{format_date score.date}}</p>
+            <p>Score: {{score.total}}</p>
+            <button class="delete-score-btn btn btn-sm btn-danger" data-id="{{course.id}}" type="submit">DELETE</button>
+          </div>
+            {{/each}}
+        {{/each}}
+      {{/if}}
+  </div>
+</div>
+
+ 
+
+<script src="js/deletescore.js"></script>

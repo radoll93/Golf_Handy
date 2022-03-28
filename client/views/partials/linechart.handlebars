@@ -1,0 +1,41 @@
+{{#each course as |course|}}
+    {{#each course.scores as |score| }}
+    <div class="datearry" style="visibility:hidden">{{format_date date}} {{total}}</div>
+    
+    {{/each}}
+{{/each}} 
+
+
+    <div id="chart" style="width: 700px; height: 500px"></div>
+  
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    
+    const arrdatatable = [['Date', 'Score']]
+    const dateObj= document.querySelectorAll('.datearry')
+
+    dateObj.forEach(arr=> arrdatatable.push(arr.innerHTML.split(' ')) )
+    for(i=1; i<arrdatatable.length; i++) {
+        const parsenum = parseInt(arrdatatable[i][1]);
+        const revised = arrdatatable[i].splice(1, 1, parsenum )
+    }
+    console.log(arrdatatable)
+
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable(arrdatatable);
+
+    var options = {
+        title: 'Your score in chart!',
+        legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart'));
+
+    chart.draw(data, options);
+    }
+</script>

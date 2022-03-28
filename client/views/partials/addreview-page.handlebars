@@ -1,0 +1,33 @@
+
+<div class="row mt-4" style="background-color: #076652; margin-top:40px;">
+    <div class="col-md-6">
+      <h3>Add Review:</h3>
+
+      <form class="form new-post-form">
+        <div class="form-group">
+          <label for="post-course">Course name:</label>
+          <input class="form-input" type="text" id="post-course" name="post-course" style="width: auto;" />
+        </div>
+        <div class="form-group">
+          <label for="post-coursePar">Par:</label>
+          <input class="form-input" max='72' type="number" id="post-coursePar" name="post-coursePar" style="width: auto;" />
+        </div>
+        <div class="form-group">
+          <label for="post-coursereview">How about this course?</label>
+          <input class="form-input" type="text" id="post-coursereview" name="post-coursereview" style="width: auto;" />
+        </div>
+        <div class="form-group">
+            <label for="post-courserating">Rating this course!</label>
+            <input class="form-input" max='5' type="number" id="post-courserating" name="post-courserating" style="width: auto;" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="create-button btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+{{#each courses}}
+  <div class="allcourse" style="visibility: hidden;">{{name}}</div>
+{{/each}}
+<script src="/js/addreview.js"></script>

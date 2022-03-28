@@ -1,0 +1,140 @@
+header {
+  border-bottom: 2px solid #076652;
+}
+
+#map { 
+  display: block;
+  width: 80%;
+  min-height: 400px;
+}
+
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+div.transbox h2 {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+
+h4 {
+  font-size: large;
+}
+
+h3 {
+  margin-left: 20px;
+  font-size: large;
+}
+
+a {
+  text-decoration: none;
+  color: #076652;
+}
+
+a:hover {
+  color: yellow;
+}
+
+.no-button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #076652;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.no-button:hover {
+  color: yellow;
+}
+
+.diane {
+  width: auto;
+}
+
+.credentials {
+  font-size: large;
+}
+
+
+.add-review-button {
+  background-color: #076652;
+  border: none;
+  color: white;
+  padding: 16px 150px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.add-review-button-1 {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #076652;
+}
+
+.add-review-button-1:hover {
+  background-color: #076652;
+  color: white;
+}
+
+.add-score-button {
+  background-color: #076652;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.add-score-button-1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #076652;
+}
+
+.add-score-button-1:hover {
+  background-color: #076652;
+  color: white;
+}
+
+.add-score-btn {
+  margin-top: 20px;
+  margin-left: 10px;
+  color: white;
+  background-color: #076652;
+}
+
+.add-score-btn:hover {
+  color: yellow;
+}
+
+.delete-score-btn {
+  margin-bottom: 10px;
+  background-color: #076652;
+  color: white;
+}
+
+.delete-score-btn:hover {
+  background-color: red;
+  color: white;
+}
+
