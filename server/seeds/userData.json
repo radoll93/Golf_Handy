@@ -1,0 +1,22 @@
+[
+    {
+        "username": "Bora",
+        "email": "bbora1119@gmail.com",
+        "password": "borabora",
+        "userCourses": [
+            {
+                "name": "Stone mountain"
+            }
+        ]
+    },
+    {
+        "username": "Baylor",
+        "email": "Baylor@gmail.com",
+        "password": "Baylor123",
+        "userCourses": [
+            {
+                "name": "Mystery"
+            }
+        ]
+    }
+]

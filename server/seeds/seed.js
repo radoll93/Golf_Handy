@@ -1,22 +1,18 @@
-const sequelize = require('../config/connection');
-const seedUsers = require('./userData');
-const seedReviews = require('./reviewData');
-const seedScores = require('./scoreData');
-const seedCourses = require('./courseData');
+const db = require('../config/connection');
+const { User, Course } = require('../models');
 
-const seedAll = async () => {
-  await sequelize.sync({ force: true });
-  await seedUsers();
-  await seedCourses();
+const userData = require('./userData.json');
+const courseData = require('./courseData.json');
 
+db.once('open', async () => {
+  await User.deleteMany({});
+  await Course.deleteMany({});
 
-  await seedReviews();
+  const Users = await User.insertMany(userData);
+  const Courses = await Course.insertMany(courseData);
 
-  await seedScores();
-
-
-
+  console.log('Users and courses Seeded!');
+  console.log(Users)
+  console.log(Courses)
   process.exit(0);
-};
-
-seedAll();
+});

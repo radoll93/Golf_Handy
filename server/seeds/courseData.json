@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Stone mountain",
+        "par": 72,
+        "courseScores": [
+            {
+                "date": "12/04/2021",
+                "total": 100
+            },
+            {
+                "date": "01/04/2022",
+                "total": 90
+            }
+        ],
+        "courseReviews": [
+            {
+                "comment": "It is good",
+                "rating": 5
+            }
+        ]
+    },
+    {
+        "name": "Mystery",
+        "par": 72,
+        "courseScores": [
+            {
+                "date": "12/04/2021",
+                "total": 100
+            },
+            {
+                "date": "01/04/2022",
+                "total": 90
+            }
+        ],
+        "courseReviews": [
+            {
+                "comment": "It is bad",
+                "rating": 1
+            }
+        ]
+
+    }
+]
