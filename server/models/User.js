@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const courseSchema = require('./Course')
 
 const userSchema = new Schema(
   {
@@ -19,7 +18,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    userCourses: [courseSchema]
   },
   {
     toJSON: {

@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const scoreSchema = require('./Score')
 const reviewSchema = require('./Review')
@@ -18,5 +18,6 @@ const courseSchema = new Schema(
   }    
   );
 
+  const Course = model('Course', courseSchema);
 
-  module.exports = courseSchema;
+  module.exports = Course;
