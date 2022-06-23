@@ -47,7 +47,17 @@ const resolvers = {
    
       return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { userCourses: args }},
+          { $addToSet: { userCourses.courseScores: args }},
+          { new: true, runValidators: true }
+       )
+      }
+    },
+    saveReview: async (parent, args, context ) => {
+      if (context.user) {
+   
+      return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { userCourses.courseReviews: args }},
           { new: true, runValidators: true }
        )
       }
@@ -57,6 +67,15 @@ const resolvers = {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { userCourses: { courseScores._id: _id } } }, //what is _id? need additional check
+          { new: true }
+          );
+      }
+    },
+    removeReview: async (parent, {_id}, context ) => {
+      if(context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { userCourses: { courseReviews._id: _id } } }, //what is _id? need additional check
           { new: true }
           );
       }
