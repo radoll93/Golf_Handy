@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Course } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -6,18 +6,21 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('animes');
+      return User.find().populate('courses');
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('animes');
+        return User.findOne({ _id: context.user._id }).populate('courses');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    courses: async () => {
+      return Course.find();
+    },
   },
   Mutation: {
-    addUser: async (parent, { firstname, lastname, email, password }) => {
-      const user = await User.create({ firstname, lastname, email, password });
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
       const token = signToken(user);
 
       return {token, user}
@@ -39,21 +42,21 @@ const resolvers = {
 
       return { token, user };
     },
-    saveAnime: async (parent, args, context ) => {
+    saveScore: async (parent, args, context ) => {
       if (context.user) {
    
       return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedAnimes: args }},
+          { $addToSet: { userCourses: args }},
           { new: true, runValidators: true }
        )
       }
     },
-    removeAnime: async (parent, {mal_id}, context ) => {
+    removeScore: async (parent, {_id}, context ) => {
       if(context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedAnimes: { mal_id: mal_id } } },
+          { $pull: { userCourses: { courseScores._id: _id } } }, //what is _id? need additional check
           { new: true }
           );
       }
