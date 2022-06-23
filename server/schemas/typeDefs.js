@@ -38,15 +38,16 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user: User
+    courses: [Course]
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveScore(titleEnglish: String, titleJapanese: String, score: Float!, mal_id: Int, genres: [String], image: String): User
-    saveReview(titleEnglish: String, titleJapanese: String, score: Float!, mal_id: Int, genres: [String], image: String): User
-    removeScore(mal_id: Int): User
-    removeReview(mal_id: Int): User
+    saveScore(date: Date!, total: Int!): User
+    saveReview(comment: String, createdDate: Date, rating: Float!): User
+    removeScore(_id: Int): User
+    removeReview(_id: Int): User
     changePassword(password: String!): Auth
   }
 `;
