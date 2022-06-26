@@ -23,13 +23,15 @@ const typeDefs = gql`
     _id: ID
     comment: String
     createdDate: Date
-    rating: Int
+    rating: Float
+    user_id: Int
   }
 
   type Score {
     _id: ID
     date: Date
     total: Int
+    user_id: Int
   }
 
   type Auth {
@@ -46,8 +48,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveScore(date: Date!, total: Int!): User
-    saveReview(comment: String, createdDate: Date, rating: Float!): User
+    saveScore(date: Date!, total: Int!, user_id: Int): User
+    saveReview(comment: String, createdDate: Date, rating: Float!, user_id: Int): User
     removeScore(_id: Int): User
     removeReview(_id: Int): User
     changePassword(password: String!): Auth

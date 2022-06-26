@@ -20,4 +20,4 @@ const courseSchema = new Schema(
 
   const Course = model('Course', courseSchema);
 
-  module.exports = Course;
+  module.exports = {Course,  courseSchema};

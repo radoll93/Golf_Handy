@@ -39,5 +39,25 @@
             }
         ]
 
+    },
+    {
+        "name": "Southland Golf",
+        "par": 72,
+        "courseScores": [
+            {
+                "date": "12/04/2021",
+                "total": 99
+            },
+            {
+                "date": "01/04/2022",
+                "total": 95
+            }
+        ],
+        "courseReviews": [
+            {
+                "comment": "Cart accident lol",
+                "rating": 5
+            }
+        ]
     }
 ]

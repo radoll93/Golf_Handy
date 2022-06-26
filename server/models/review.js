@@ -15,7 +15,10 @@ const reviewSchema = new Schema(
     rating: {
       type: Number,
       required: true
-    }
+    },
+    user_id: {
+      type: Number,
+    },
     }
   );
   

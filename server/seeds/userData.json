@@ -5,7 +5,8 @@
         "password": "borabora",
         "userCourses": [
             {
-                "name": "Stone mountain"
+                "name": "Stone mountain",
+                "par": 72
             }
         ]
     },
@@ -15,7 +16,21 @@
         "password": "Baylor123",
         "userCourses": [
             {
-                "name": "Mystery"
+                "name": "Mystery",
+                "par": 72
+
+            }
+        ]
+    },
+    {
+        "username": "Aiden",
+        "email": "skylsg18@gmail.com",
+        "password": "Aiden123",
+        "userCourses": [
+            {
+                "name": "Southland Golf",
+                "par": 72
+
             }
         ]
     }
